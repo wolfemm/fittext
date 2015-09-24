@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>squeeze text</title>
+
+	<style type="text/css">
+		body {
+		  background: #354458;
+		  color: #fff;
+		  font: 16px sans-serif;
+		}
+
+    .container {
+      background-color: #db3340;
+    }
+
+    .squeeze-me {
+      white-space: nowrap;
+    }
+	</style>
+</head>
+
+<body>
+
+	<div class="container">
+    <h1 class="squeeze-me">My font size has been adjusted to fit my parent and if you resize the screen, I'll continue to fit!</h1>
+	</div>
+
+  <script src="bower_components/vebounce/vebounce.js"></script>
+ 	<script src="squeeze-text.js"></script>
+	<script type="text/javascript">
+	  window.squeezeText(document.getElementsByClassName('squeeze-me'));
+	</script>
+
+</body>
+</html>

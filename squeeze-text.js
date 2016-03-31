@@ -44,16 +44,16 @@
   }
 
   window.squeezeText = function(el, options) {
+    var elCount = el.length;
+
     options = extend({
       debounce: 150,
       increment: 1
     }, options);
 
     function run() {
-      var length = el.length;
-
-      if (length) {
-        for (var i = 0; i < length; i++) {
+      if (elCount) {
+        for (var i = 0; i < elCount; i++) {
           squeeze(el[i], options.increment);
         }
       } else {

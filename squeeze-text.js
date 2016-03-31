@@ -20,7 +20,6 @@
 
   // Does the actual font-size adjustment for an individual element
   function squeeze(el, increment) {
-    // var el = this;
     // Check that the element is actually visible
     if (!el.offsetWidth || !el.offsetHeight) {
       return false;

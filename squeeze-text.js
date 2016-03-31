@@ -10,10 +10,11 @@
   // Extends an object with default properties
   var extend = function(obj, ext) {
     for (var key in ext) {
-      if (ext.hasOwnProperty(key)) {
+      if (typeof ext[key] !== 'undefined') {
         obj[key] = ext[key];
       }
     }
+
     return obj;
   };
 

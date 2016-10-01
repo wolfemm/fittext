@@ -19,7 +19,7 @@
   };
 
   // Does the actual font-size adjustment for an individual element
-  function squeeze(el, increment) {
+  function squeeze(el) {
     // Check that the element is actually visible
     if (!el.offsetWidth || !el.offsetHeight) {
       return false;
@@ -42,17 +42,16 @@
     var elCount = el.length;
 
     options = extend({
-      debounce: 150,
-      increment: 1
+      debounce: 150
     }, options);
 
     function run() {
       if (elCount) {
         for (var i = 0; i < elCount; i++) {
-          squeeze(el[i], options.increment);
+          squeeze(el[i]);
         }
       } else {
-        squeeze(el, options.increment);
+        squeeze(el);
       }
     }
 

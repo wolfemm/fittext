@@ -25,21 +25,16 @@
       return false;
     }
 
-    var parentWidth = el.parentNode.clientWidth;
-
-    // Reset the elements font-size (incase it was previous applied)
+    // Reset the element's font-size (incase it was previous applied)
     el.style.fontSize = null;
 
-    if (el.scrollWidth > parentWidth) {
-      // Variablize computed font size of this el
-      var currentSize = parseInt((window.getComputedStyle(el, null).getPropertyValue('font-size') || el.currentStyle.fontSize), 10);
+    var parentWidth = el.parentNode.clientWidth;
+    var elementWidth = el.scrollWidth;
 
-      // Loop so long as the element is wider than its parent.
-      // Each iteration removes one pixel of font size.
-      while (el.scrollWidth > parentWidth) {
-        currentSize = currentSize - increment;
-        el.style.fontSize = (currentSize) + 'px';
-      }
+    if (elementWidth > parentWidth) {
+      var baseSize = parseInt((window.getComputedStyle(el, null).getPropertyValue('font-size') || el.currentStyle.fontSize), 10);
+
+      el.style.fontSize = ((parentWidth / elementWidth) * baseSize) + 'px';
     }
   }
 

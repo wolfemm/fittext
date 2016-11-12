@@ -20,16 +20,17 @@
 
   // Does the actual font-size adjustment for an individual element
   function squeeze(el) {
-    // Check that the element is actually visible
-    if (!el.offsetWidth || !el.offsetHeight) {
-      return false;
-    }
-
     // Reset the element's font-size (incase it was previous applied)
     el.style.fontSize = null;
 
-    var parentWidth = el.parentNode.clientWidth;
     var elementWidth = el.scrollWidth;
+
+    // Check that the element is actually visible
+    if (!elementWidth) {
+      return false;
+    }
+
+    var parentWidth = el.parentNode.clientWidth;
 
     if (elementWidth > parentWidth) {
       var baseSize = parseInt((window.getComputedStyle(el, null).getPropertyValue('font-size') || el.currentStyle.fontSize), 10);

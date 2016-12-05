@@ -40,6 +40,10 @@
   }
 
   window.squeezeText = function(el, options) {
+    if (!el) {
+      return;
+    }
+
     var elCount = el.length;
 
     options = extend({

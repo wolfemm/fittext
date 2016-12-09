@@ -40,11 +40,11 @@
   }
 
   window.squeezeText = function(el, options) {
-    if (!el) {
+    var elCount = el ? el.length : 0;
+
+    if (elCount === 0) {
       return;
     }
-
-    var elCount = el.length;
 
     options = extend({
       debounce: 150

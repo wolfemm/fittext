@@ -4,7 +4,8 @@
   "main": "squeeze-text.js",
   "version": "0.3.2",
   "dependencies": {
-    "vebounce": "latest"
+    "vebounce": "latest",
+    "fast-dom": "1.0.x"
   },
   "authors": [
     "Michael Millard <mike@livechart.me>"

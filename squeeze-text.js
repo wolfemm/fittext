@@ -7,6 +7,12 @@
     return;
   }
 
+  if (typeof window.fastdom === 'undefined') {
+    console.error('window.squeezeText requires fastdom.',
+                  'https://github.com/wilsonpage/fastdom');
+    return;
+  }
+
   // Extends an object with default properties
   var extend = function(obj, ext) {
     for (var key in ext) {
@@ -20,23 +26,27 @@
 
   // Does the actual font-size adjustment for an individual element
   function squeeze(el) {
-    // Reset the element's font-size (incase it was previous applied)
-    el.style.fontSize = null;
+    window.fastdom.measure(function() {
+      // Reset the element's font-size (incase it was previous applied)
+      el.style.fontSize = null;
 
-    var elementWidth = el.scrollWidth;
+      var elementWidth = el.scrollWidth;
 
-    // Check that the element is actually visible
-    if (!elementWidth) {
-      return false;
-    }
+      // Check that the element is actually visible
+      if (!elementWidth) {
+        return false;
+      }
 
-    var parentWidth = el.parentNode.clientWidth;
+      var parentWidth = el.parentNode.clientWidth;
 
-    if (elementWidth > parentWidth) {
-      var baseSize = parseInt((window.getComputedStyle(el, null).getPropertyValue('font-size') || el.currentStyle.fontSize), 10);
+      if (elementWidth > parentWidth) {
+        var baseSize = parseInt((window.getComputedStyle(el, null).getPropertyValue('font-size') || el.currentStyle.fontSize), 10);
 
-      el.style.fontSize = ((parentWidth / elementWidth) * baseSize) + 'px';
-    }
+        window.fastdom.mutate(function() {
+          el.style.fontSize = ((parentWidth / elementWidth) * baseSize) + 'px';
+        });
+      }
+    });
   }
 
   window.squeezeText = function(el, options) {

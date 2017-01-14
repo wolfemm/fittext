@@ -62,7 +62,8 @@
 
     function run() {
       if (elCount) {
-        for (var i = 0; i < elCount; i++) {
+        var i = elCount;
+        while (i--) {
           squeeze(el[i]);
         }
       } else {
